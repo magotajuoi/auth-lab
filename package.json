@@ -6,18 +6,28 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "db:migrate": "auth migrate --config src/lib/auth.ts --yes",
+    "apple:secret": "node --env-file=.env.local scripts/apple-secret.mjs",
+    "tunnel": "ngrok http 3000"
   },
   "dependencies": {
+    "@better-auth/passkey": "^1.7.18",
+    "better-auth": "^1.7.18",
+    "better-sqlite3": "^13.0.3",
+    "jose": "^6.2.16",
     "next": "16.4.5",
     "react": "19.3.0",
-    "react-dom": "19.3.0"
+    "react-dom": "19.3.0",
+    "react-qr-code": "^2.2.0"
   },
   "devDependencies": {
     "@tailwindcss/turbopack": "^4",
+    "@types/better-sqlite3": "^9.6.0",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "auth": "^1.7.18",
     "eslint": "^9",
     "eslint-config-next": "16.4.5",
     "tailwindcss": "^4",
