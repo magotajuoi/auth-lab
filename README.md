@@ -11,9 +11,13 @@ Local sandbox for modern sign-up and sign-in, built with Next.js 16,
 - A **"Last used"** badge marks the method you used last
 
 **Security**
-- **Two-factor authentication** (authenticator app + 10 single-use backup codes), asked
-  after password sign-in. Accounts with 2FA can't sign in with an email code or
-  magic link alone; they must use password + code, or a passkey.
+- **Two-factor authentication**, asked after password sign-in. Two ways to get the code:
+  - **Email codes**: a 6-digit code is emailed at each sign-in (expires in 5 minutes). One click to turn on, with no app needed.
+  - **Authenticator app** (Google Authenticator, iPhone Passwords, 1Password…) with 10 single-use backup codes. Email codes stay available as a fallback.
+
+  Accounts with 2FA can't sign in with an email code or magic link alone; they must use
+  password + code, or a passkey. Google/Apple/GitHub sign-ins rely on the provider's own
+  security and skip this step.
 - **Breached-password check** on sign-up, change and reset (Have I Been Pwned; only
   the first 5 characters of the password's SHA-1 hash leave your machine)
 - **Rate limiting**: 5 password attempts per minute, 3 email-code attempts per minute, 3 reset emails per minute
@@ -21,10 +25,10 @@ Local sandbox for modern sign-up and sign-in, built with Next.js 16,
 - Password reset signs out every other session
 
 **Settings page** (`/settings`): profile and username, change or set a password,
-manage passkeys, turn 2FA on/off and regenerate backup codes, connect or disconnect
+manage passkeys, turn 2FA on (email codes or an authenticator app) or off and regenerate backup codes, connect or disconnect
 providers, see and sign out other sessions, delete the account (confirmed by email).
 
-**Emails are not sent.** Verification, reset, sign-in codes and links, and delete
+**Emails are not sent.** Verification, reset, sign-in codes and links, 2FA codes, and delete
 confirmations are printed in the dev-server terminal and shown at
 <http://localhost:3000/dev/outbox>.
 
